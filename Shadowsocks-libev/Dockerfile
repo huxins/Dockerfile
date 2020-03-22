@@ -38,6 +38,7 @@ RUN set -ex \
  && apk del .build-deps \
  # Runtime dependencies setup
  && apk add --no-cache \
+      tzdata \
       ca-certificates \
       rng-tools \
       $(scanelf --needed --nobanner /usr/bin/ss-* \
@@ -46,6 +47,8 @@ RUN set -ex \
  && rm -rf /tmp/repo
 
 USER nobody
+
+ENV TZ Asia/Shanghai
 
 CMD exec ss-server \
       -s $SERVER_ADDR \
