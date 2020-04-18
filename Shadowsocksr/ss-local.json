@@ -1,0 +1,15 @@
+{
+    "server": "0.0.0.0",
+    "server_port": "65521",
+    "local_address": "0.0.0.0",
+    "local_port": "1081",
+    "password": "4fue2V",
+    "timeout": "180",
+    "method": "rc4-md5",
+    "protocol": "origin",
+    "protocol_param": "",
+    "obfs": "http_simple",
+    "obfs_param": "download.windowsupdate.com",
+    "plugin": "",
+    "plugin_opts": ""
+}
