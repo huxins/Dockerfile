@@ -11,5 +11,7 @@
     "obfs": "http_simple",
     "obfs_param": "download.windowsupdate.com",
     "plugin": "",
-    "plugin_opts": ""
+    "plugin_opts": "",
+    "fast_open": false,
+    "workers": 4
 }
