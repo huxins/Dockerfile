@@ -23,6 +23,6 @@ COPY --from=0 /home/srelay-0.4.8p3/srelay .
 
 RUN echo "0.0.0.0 any" > srelay.conf
 
-ENTRYPOINT [ "./srelay", "-q", "-c ./srelay.conf" ]
+ENTRYPOINT [ "./srelay", "-q", "-f", "-c ./srelay.conf" ]
 
 CMD ["-i:1080"]
