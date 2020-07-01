@@ -1,15 +1,17 @@
-FROM alpine:3.11
+FROM debian:buster
 
 RUN set -ex \
- && sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories \
- && apk add --no-cache --virtual .build-deps \
-     git \
-     build-base \
+ && sed -i 's/deb.debian.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list \
+ && sed -i 's/security.debian.org/mirrors.tuna.tsinghua.edu.cn/g' /etc/apt/sources.list \
+ && apt-get update && apt-get install -y --no-install-recommends \
+     git ca-certificates build-essential \
+ && rm -rf /var/lib/apt/lists/* \
  && git clone --depth=1 https://github.com/rofl0r/microsocks.git /tmp/repo/microsocks \
  && cd /tmp/repo/microsocks \
  && make install \
- && apk del .build-deps \
+ && apt-get autoclean \
+ && apt-get purge -y --auto-remove build-essential git \
  && cd ~ \
  && rm -rf /tmp/repo
 
-CMD microsocks -b -i 0.0.0.0 -p 1080 -u $USER_NAME -P $PASSWORD
+CMD microsocks -1 -i 0.0.0.0 -p 1080 -u $USER_NAME -P $PASSWORD -b 0.0.0.0
