@@ -1,8 +1,8 @@
-# Shadowsocks-libev
+# Shadowsocksr-libev
 
 ```shell
-$ docker build -t ss:v1 .
-$ docker run --restart always -p 1081:1081 -d ss:v1
+$ docker build -t shadowsocksr-libev:latest .
+$ docker run --restart always -p 1081:1081 -d shadowsocksr-libev:latest
 ```
 
 
