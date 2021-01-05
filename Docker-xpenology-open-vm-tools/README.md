@@ -18,7 +18,7 @@ This Docker container allows you to run open-vm-tools on a Xpenology DSM running
 
 SSH into your DSM and run this command.
 
-```
+```bash
 sudo mkdir /root/.ssh
 sudo docker run -d --restart=always --net=host -v /root/.ssh/:/root/.ssh/ --name open-vm-tools yalewp/xpenology-open-vm-tools
 ```
