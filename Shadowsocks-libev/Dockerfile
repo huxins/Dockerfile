@@ -7,9 +7,11 @@ FROM alpine:3.11
 
 ENV SERVER_ADDR 0.0.0.0
 ENV SERVER_PORT 8388
+ENV PASSWORD=
 ENV METHOD chacha20
 ENV TIMEOUT 300
-ENV DNS_ADDRS 119.29.29.29,223.6.6.6
+ENV DNS_ADDRS 8.8.8.8,8.8.4.4
+ENV TZ Asia/Shanghai
 
 RUN set -ex \
  && sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories \
@@ -38,17 +40,15 @@ RUN set -ex \
  && apk del .build-deps \
  # Runtime dependencies setup
  && apk add --no-cache \
-      tzdata \
       ca-certificates \
       rng-tools \
+      tzdata \
       $(scanelf --needed --nobanner /usr/bin/ss-* \
       | awk '{ gsub(/,/, "\nso:", $2); print "so:" $2 }' \
       | sort -u) \
  && rm -rf /tmp/repo
 
 USER nobody
-
-ENV TZ Asia/Shanghai
 
 CMD exec ss-server \
       -s $SERVER_ADDR \
